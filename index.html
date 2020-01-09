@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pensacola Tour!</title>
+        <style>
+            #banner {
+                background-color: rgb(63, 138, 100);
+                font-size: medium;
+            }
+
+            #map {
+                height: 100%;
+            }
+
+            #markerInfo {
+                margin: 50px;
+            }
+
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            heading {
+                font-size: x-large;
+            }
+        </style>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoo8t-UHMDZkM3Y2kcuQJInTh126LgmXc&callback=initMap"></script>
+        <script src="mapsAPI.js"></script>
+    </head>
+    <body>
+        <div id="banner" style="text-align: center;">
+            </br>
+            <heading>A small tour of some of my favorite places in Pensacola, FL</heading>
+            <p>These are just a few places I like to go to eat, visit and hangout near home!</p>
+            <p><strong>***Click any marker once to begin the tour at Hot Head Burritos***</strong></p>
+            </br>
+        </div>
+        <div id="map"></div>
+    </body>
+</html>
