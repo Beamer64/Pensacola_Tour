@@ -1,4 +1,4 @@
-## Pensacola_Tour
+## Pensacola_Tour Maps API
 # A small tour of some of my favorite places in Pensacola, FL
 
 There are a lot of popular places to visit in florida and I've put together a small group of some of my favorites.
