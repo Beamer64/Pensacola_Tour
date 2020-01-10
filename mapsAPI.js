@@ -39,7 +39,7 @@ function initMap() {
     var hubStaceyData = new google.maps.InfoWindow({
         content: '<div id="markerInfo">' +
             '<h1>Hub Stacey\'s</h1><h2>5851 Galvez Rd</h2>' +
-            'Good food with a great view. I would deffenitly recommend giving them a try. ' +
+            'Good food with a great view. I would definitely recommend giving them a try. ' +
             'This is one of the coolest places to eat, whether its breakfast, lunch or dinner. ' +
             'Bar/lounge inside, outdoor seating, live music and a stimulating atmosphere. ' +
             '</div>'
@@ -68,9 +68,9 @@ function initMap() {
 
     var sushiMasaData = new google.maps.InfoWindow({
         content: '<div id="markerInfo">' +
-            '<h1>Shushi Masa</h1><h2>4731 Bayou Blvd</h2>' +
+            '<h1>Sushi Masa</h1><h2>4731 Bayou Blvd</h2>' +
             'Hibachi Style Japanese Restaurant with some of the best sushi in town. ' +
-            'Very large variety of sushi to choose from and the best part is it\'s all you can eat!. ' +
+            'Very large variety of sushi to choose from and the best part is it\'s all you can eat! ' +
             'Has a nice, calm atmosphere and is a great place to meet for lunch/dinner. ' +
             '</div>'
     });
