@@ -97,55 +97,107 @@ function initMap() {
         title: 'T&W Flea Market'
     });
 
-    google.maps.event.addListener(hotHeadLoc, 'click', function () { startTour(); })
+    var parkEastData = new google.maps.InfoWindow({
+        content: '<div id="markerInfo">' +
+            '<h1>Park East Beach</h1><h2>1233-1235 Fort Pickens Rd</h2>' +
+            'This is one of the best beaches to visit when its sunny. ' +
+            'The sand is very soft and white and the water can be crystal clear on a calm day. ' +
+            'It\'s great when you want to relax or for me, if you want to record some of the ' +
+            'aquatic wildlife. ' +
+            '</div>'
+    });
 
-    google.maps.event.addListener(cordovaLoc, 'click', function () { startTour(); })
+    var parkEastLoc = new google.maps.Marker({
+        position: { lat: 30.347091, lng: -87.058563 },
+        map: map,
+        title: 'Park East Beach'
+    });
 
-    google.maps.event.addListener(hubStaceyLoc, 'click', function () { startTour(); })
+    google.maps.event.addListener(hotHeadLoc, 'click', function () { startTour(hotHeadLoc, 0); });
 
-    google.maps.event.addListener(tandwLoc, 'click', function () { startTour(); })
+    google.maps.event.addListener(cordovaLoc, 'click', function () { startTour(cordovaLoc, 0); });
 
-    google.maps.event.addListener(sevilleLoc, 'click', function () { startTour(); })
+    google.maps.event.addListener(hubStaceyLoc, 'click', function () { startTour(hubStaceyLoc, 0); });
 
-    google.maps.event.addListener(sushiMasaLoc, 'click', function () { startTour(); })
+    google.maps.event.addListener(tandwLoc, 'click', function () { startTour(tandwLoc, 0); });
+
+    google.maps.event.addListener(sevilleLoc, 'click', function () { startTour(sevilleLoc, 0); });
+
+    google.maps.event.addListener(sushiMasaLoc, 'click', function () { startTour(sushiMasaLoc, 0); });
+
+    google.maps.event.addListener(parkEastLoc, 'click', function () { startTour(parkEastLoc, 0); });
+
 
     //starts looping through locations
-    function startTour() {
-        var timer = 8000;
-        cordovaData.close(map, cordovaLoc);
-        map.panTo(hotHeadLoc.getPosition());
-        hotHeadData.open(map, hotHeadLoc);
+    function startTour(location, timer) {
+        switch (location) {
+            case hotHeadLoc:
+                window.setTimeout(function () {
+                    map.panTo(hotHeadLoc.getPosition());
+                    parkEastData.close(map, parkEastLoc);
+                    hotHeadData.open(map, hotHeadLoc);
+                }, timer);
 
-        window.setTimeout(function () {
-            map.panTo(hubStaceyLoc.getPosition());
-            hotHeadData.close(map, hotHeadLoc);
-            hubStaceyData.open(map, hubStaceyLoc);
-        }, timer);
+                timer += 8000;
 
-        window.setTimeout(function () {
-            map.panTo(sevilleLoc.getPosition());
-            hubStaceyData.close(map, hubStaceyLoc);
-            sevilleData.open(map, sevilleLoc);
-        }, timer += 8000);
+            case hubStaceyLoc:
+                window.setTimeout(function () {
+                    map.panTo(hubStaceyLoc.getPosition());
+                    hotHeadData.close(map, hotHeadLoc);
+                    hubStaceyData.open(map, hubStaceyLoc);
+                }, timer);
 
-        window.setTimeout(function () {
-            map.panTo(tandwLoc.getPosition());
-            sevilleData.close(map, sevilleLoc);
-            tandwData.open(map, tandwLoc);
-        }, timer += 8000);
+                timer += 8000;
 
-        window.setTimeout(function () {
-            map.panTo(sushiMasaLoc.getPosition());
-            tandwData.close(map, tandwLoc);
-            sushiMasaData.open(map, sushiMasaLoc);
-        }, timer += 8000);
+            case sevilleLoc:
+                window.setTimeout(function () {
+                    map.panTo(sevilleLoc.getPosition());
+                    hubStaceyData.close(map, hubStaceyLoc);
+                    sevilleData.open(map, sevilleLoc);
+                }, timer);
 
-        window.setTimeout(function () {
-            map.panTo(cordovaLoc.getPosition());
-            sushiMasaData.close(map, sushiMasaLoc);
-            cordovaData.open(map, cordovaLoc);
-            startTour(hotHeadLoc);
-        }, timer += 8000);
+                timer += 8000;
+
+            case tandwLoc:
+                window.setTimeout(function () {
+                    map.panTo(tandwLoc.getPosition());
+                    sevilleData.close(map, sevilleLoc);
+                    tandwData.open(map, tandwLoc);
+                }, timer);
+
+                timer += 8000;
+
+            case sushiMasaLoc:
+                window.setTimeout(function () {
+                    map.panTo(sushiMasaLoc.getPosition());
+                    tandwData.close(map, tandwLoc);
+                    sushiMasaData.open(map, sushiMasaLoc);
+                }, timer);
+
+                timer += 8000;
+
+            case cordovaLoc:
+                window.setTimeout(function () {
+                    map.panTo(cordovaLoc.getPosition());
+                    sushiMasaData.close(map, sushiMasaLoc);
+                    cordovaData.open(map, cordovaLoc);
+                }, timer);
+
+                timer += 8000;
+
+            case parkEastLoc:
+                window.setTimeout(function () {
+                    map.panTo(parkEastLoc.getPosition());
+                    cordovaData.close(map, cordovaLoc);
+                    parkEastData.open(map, parkEastLoc);
+                }, timer);
+
+                timer += 8000;
+
+                window.setTimeout(function () {
+                    startTour(hotHeadLoc, 0);
+                }, timer);
+        }
     }
 }
 google.maps.event.addDomListener(window, 'load', initMap);
